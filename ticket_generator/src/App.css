@@ -1,6 +1,6 @@
 @import "tailwindcss";
 body {
-  font-family: 'Cormorant', serif;
+  font-family: 'Poppins', serif;
   font-weight: 400; /* Regular weight */
   font-size: 16px;  /* Adjust as needed */
   line-height: 1.6;
@@ -9,7 +9,7 @@ body {
 
 /* Example for different weights */
 h1, h2, h3 {
-  font-weight: 700; /* Bold for headings */
+  font-weight: 600;
 }
 
 em {
