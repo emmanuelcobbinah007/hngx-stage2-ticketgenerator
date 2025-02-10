@@ -1,12 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Navbar from './components/Navbar'
 import './App.css'
 
 function App() {
 
   return (
-      <div className='text-white'>Hello World</div>
+      <div className='text-white bg-[#02191D] h-screen font-comorant'>
+        <div className='pt-4 w-[80%] mx-auto'>
+        <Navbar />
+        </div>  
+      </div>
   )
 }
 

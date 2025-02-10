@@ -1,1 +1,17 @@
 @import "tailwindcss";
+body {
+  font-family: 'Cormorant', serif;
+  font-weight: 400; /* Regular weight */
+  font-size: 16px;  /* Adjust as needed */
+  line-height: 1.6;
+  color: #333; /* Optional: for better readability */
+}
+
+/* Example for different weights */
+h1, h2, h3 {
+  font-weight: 700; /* Bold for headings */
+}
+
+em {
+  font-style: italic;
+}
