@@ -61,12 +61,15 @@ const TicketForm = () => {
     await addTicket(ticket);
     setLoading(false);
 
+    // Reset form fields
+    setFullName("");
+    setEmail("");
+    setAvatar("");
+    setEvent("");
 
-    // Simulate API call
-    // setTimeout(() => {
-    //   console.log("Form submitted:", { fullName, email, avatar, event });
-    //   setLoading(false);
-    // }, 2000);
+    // Generating ticket to be shown to the user in the next page
+
+
   };
 
   return (
@@ -93,6 +96,7 @@ const TicketForm = () => {
               type="text"
               name="fullName"
               id="fullName"
+              value={fullName}
             />
 
             <label className="text-md" htmlFor="email" name="email">
@@ -105,6 +109,7 @@ const TicketForm = () => {
               name="email"
               id="email"
               placeholder="hello@hng.com"
+              value={email}
             />
 
             <label className="text-md" htmlFor="avatar" name="avatar">
@@ -117,6 +122,7 @@ const TicketForm = () => {
               name="avatar"
               id="avatar"
               placeholder="https://www.example.com/image"
+                value={avatar}
             />
 
             <label className="text-md" htmlFor="event" name="event">
@@ -129,6 +135,7 @@ const TicketForm = () => {
               name="event"
               id="event"
               placeholder="HNG Internship 12.0"
+                value={event}
             />
 
             <input
