@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { loadAllTickets, deleteTicket } from "../db/indexedDB";  // Ensure you have deleteTicket in your IndexedDB utils
+import { loadAllTickets, deleteTicket } from "../db/indexedDB";
 import handleDownloadPDF from "../utils/handleDownloadPDF";
 import { IoCloudDownloadOutline } from "react-icons/io5";
 import { Toaster, toast } from "react-hot-toast";
 import { QRCodeCanvas } from "qrcode.react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const AllTickets = () => {
   const [tickets, setTickets] = useState([]);
+  const [expandedTicketId, setExpandedTicketId] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,6 +20,10 @@ const AllTickets = () => {
     fetchTickets();
   }, []);
 
+  const handleToggleDetails = (id) => {
+    setExpandedTicketId(expandedTicketId === id ? null : id);
+  };
+
   const handleDelete = async (id) => {
     toast(
       (t) => (
@@ -27,9 +33,9 @@ const AllTickets = () => {
             <button
               className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
               onClick={async () => {
-                await deleteTicket(id);  // Delete the ticket
-                setTickets(tickets.filter(ticket => ticket.id !== id));  // Update UI
-                toast.dismiss(t.id);  // Close the confirmation toast
+                await deleteTicket(id);
+                setTickets(tickets.filter(ticket => ticket.id !== id));
+                toast.dismiss(t.id);
                 toast.success("Ticket deleted successfully!");
               }}
             >
@@ -45,17 +51,18 @@ const AllTickets = () => {
         </div>
       ),
       {
-        duration: 10000, 
+        duration: 10000,
         position: "top-right",
         style: {
-            background: "#041E23",
-            color: "white",  
-            border: "2px solid #0E464F",
-            boxShadow: "none",
-          },
+          background: "#041E23",
+          color: "white",
+          border: "2px solid #0E464F",
+          boxShadow: "none",
+        },
       }
     );
   };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -66,7 +73,7 @@ const AllTickets = () => {
 
   return (
     <div className="my-10 px-6">
-        <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-right" reverseOrder={false} />
       <h1 className="text-2xl font-semibold text-white text-center mb-8">
         Your Tickets
       </h1>
@@ -85,22 +92,53 @@ const AllTickets = () => {
                 />
                 <h2 className="text-lg font-bold text-white">{ticket.fullName}</h2>
                 <p className="text-sm text-[#B0C4C7]">{ticket.event}</p>
-                
 
-                <div className="flex justify-center text-white text-center sm:text-left">
                 <button
                   className="mt-4 mx-3 text-sm py-2 px-6 rounded-lg border border-[#07373F] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
-                  onClick={() => handleDownloadPDF(ticket)}
+                  onClick={() => handleToggleDetails(ticket.id)}
                 >
-                  View Details
+                  {expandedTicketId === ticket.id ? "Hide Details" : "View Details"}
                 </button>
-                <button
-                  className="mt-4 mr-3 text-lg py-2 px-3 rounded-lg border border-[#24A0B5] hover:cursor-pointer text-white hover:scale-105 duration-300 ease-in-out"
-                  onClick={() => handleDownloadPDF(ticket)}
-                >
-                  <IoCloudDownloadOutline />
-                </button>
-                </div>
+
+                <AnimatePresence>
+                  {expandedTicketId === ticket.id && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="mt-4 p-4 bg-[#07373F] rounded-lg w-full"
+                    >
+                      <div className="grid grid-cols-2 gap-4 text-sm text-white">
+                        <div>
+                          <p className="font-semibold text-[#24A0B5]">Event</p>
+                          <p>{ticket.event}</p>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-[#24A0B5]">Date</p>
+                          <p>{ticket.date}</p>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-[#24A0B5]">Location</p>
+                          <p>{ticket.location}</p>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-[#24A0B5]">Seat</p>
+                          <p>{ticket.seat}</p>
+                        </div>
+                      </div>
+                      <div className="mt-4">
+                        <QRCodeCanvas value={`Ticket for ${ticket.fullName}`} size={100} className="mx-auto" />
+                      </div>
+                      <button
+                        className="mt-4 w-full text-sm py-2 px-6 rounded-lg border border-[#24A0B5] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
+                        onClick={() => handleDownloadPDF(ticket)}
+                      >
+                        <IoCloudDownloadOutline className="inline-block mr-2" />
+                        Download PDF
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 <button
                   className="mt-2 text-sm py-2 px-6 rounded-lg border border-red-500 bg-transparent text-red-500 hover:bg-red-500 hover:text-white duration-300 ease-in-out"
