@@ -25,12 +25,13 @@ export const openDatabase = () => {
 export const addTicket = async (ticket) => {
   try {
     const db = await openDatabase();
-    const transaction = db.transaction(STORE_NAME, 'readwrite');
+    const transaction = db.transaction(STORE_NAME, "readwrite");
     const store = transaction.objectStore(STORE_NAME);
+
     store.add(ticket);
-    console.log('Ticket added:', ticket);
+    console.log("Ticket added:", ticket);
   } catch (error) {
-    console.error('Failed to add ticket:', error);
+    console.error("Failed to add ticket:", error);
   }
 };
 
@@ -42,4 +43,18 @@ export const loadAllTickets = async () => {
   const allTickets = await store.getAll();  // This is still an IDBRequest
 
   return allTickets;  // Make sure to return this directly
+};
+
+// Function to delete ticket from IndexedDB
+export const deleteTicket = async (id) => {
+  try {
+    const db = await openDB(DB_NAME, DB_VERSION);  // Use the correct DB name and version
+    const tx = db.transaction(STORE_NAME, "readwrite");
+    const store = tx.objectStore(STORE_NAME);
+    await store.delete(id);
+    await tx.done;
+    console.log(`Ticket with id ${id} deleted successfully`);
+  } catch (error) {
+    console.error(`Failed to delete ticket with id ${id}:`, error);
+  }
 };

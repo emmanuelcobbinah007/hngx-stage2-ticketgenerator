@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.0.6",
     "canvas-confetti": "^1.9.3",
+    "framer-motion": "^12.4.2",
     "html2canvas": "^1.4.1",
     "idb": "^8.0.2",
     "jspdf": "^2.5.2",

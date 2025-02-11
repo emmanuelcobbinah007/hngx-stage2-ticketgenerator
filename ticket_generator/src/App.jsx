@@ -7,7 +7,7 @@ import "./App.css";
 function App() {
   return (
     <Router>
-      <div className="text-white bg-[#02191D] min-h-screen">
+      <div className="text-white bg-[#02191D] min-h-screen ">
         <div className="py-4 w-[80%] mx-auto">
           <Navbar />
           <Routes>
