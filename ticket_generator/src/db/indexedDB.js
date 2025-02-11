@@ -1,3 +1,5 @@
+import { openDB } from 'idb';
+
 const DB_NAME = 'ticketDB';
 const DB_VERSION = 1;
 const STORE_NAME = 'tickets';
@@ -19,6 +21,7 @@ export const openDatabase = () => {
   });
 };
 
+// Function to add ticket to IndexedDB
 export const addTicket = async (ticket) => {
   try {
     const db = await openDatabase();
@@ -29,4 +32,14 @@ export const addTicket = async (ticket) => {
   } catch (error) {
     console.error('Failed to add ticket:', error);
   }
+};
+
+// Function to load all tickets in IndexedDB
+export const loadAllTickets = async () => {
+  const db = await openDB('ticketDB', 1);
+  const transaction = db.transaction('tickets', 'readonly');
+  const store = transaction.objectStore('tickets');
+  const allTickets = await store.getAll();  // This is still an IDBRequest
+
+  return allTickets;  // Make sure to return this directly
 };

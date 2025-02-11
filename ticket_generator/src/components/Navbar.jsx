@@ -7,27 +7,24 @@ const Navbar = () => {
       <Link to="/">
         <p className="text-xl">Ticker</p>
       </Link>
-      <div className="text-md">
-        <a
+      <div className="text-md flex items-center">
+        <p
           className="mx-3 text-[#b3b3b3] hover:text-[#fff] hover:scale-105 duration-300"
-          href="#"
         >
           Events
-        </a>
+        </p>
         <Link to="all-tickets">
-          <a
+          <p
             className="mx-3 text-[#b3b3b3] hover:text-[#fff] hover:scale-105 duration-300"
-            href="#"
           >
             My Tickets
-          </a>
+          </p>
         </Link>
-        <a
+        <p
           className="mx-3 text-[#b3b3b3] hover:text-[#fff] hover:scale-105 duration-300"
-          href="#"
         >
           About Projects
-        </a>
+        </p>
       </div>
       <Link to="/all-tickets">
         <button className="font-bold bg-white text-[#0A0C11] px-4 py-2 rounded-lg hover:cursor-pointer hover:scale-105 duration-300">
