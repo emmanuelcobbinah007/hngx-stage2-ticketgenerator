@@ -129,7 +129,7 @@ const TicketForm = () => {
 
       {ticketData && (
         <div className="mx-auto w-full sm:w-[90%] lg:w-[70%] ticket-card mt-8 p-6 border border-[#0E464F] bg-[#041E23] rounded-2xl shadow-lg">
-          <div className="p-6 rounded-lg border border-[#0E464F] bg-[#08252B]">
+          <div className="pdf-content p-6 rounded-lg border border-[#0E464F] bg-[#08252B]">
             <h2 className="text-2xl font-bold mb-4 text-center text-white">
               Your Ticket is Ready!
             </h2>
@@ -164,7 +164,7 @@ const TicketForm = () => {
               </button>
               <button
                 className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#07373F] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
-                onClick={handleDownloadPDF}
+                onClick={() => handleDownloadPDF(ticketData)}
               >
                 Download Ticket
               </button>
