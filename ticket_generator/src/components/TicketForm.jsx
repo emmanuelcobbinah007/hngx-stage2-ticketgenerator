@@ -155,7 +155,8 @@ const TicketForm = () => {
                 className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-[#0E464F] transform transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg"
               />
             </div>
-            <div className="flex flex-col sm:flex-row justify-center sm:justify-between mt-4">
+            </div>
+            <div className="p-2 rounded-lg border border-[#0E464F] bg-[#08252B] flex flex-col sm:flex-row justify-center sm:justify-between mt-4">
               <button
                 className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#24A0B5] text-[#24A0B5] hover:scale-105 duration-300 ease-in-out mb-2 sm:mb-0"
                 onClick={() => setTicketData(null)}
@@ -170,7 +171,6 @@ const TicketForm = () => {
               </button>
             </div>
           </div>
-        </div>
       )}
     </div>
   );
