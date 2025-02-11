@@ -71,7 +71,7 @@ const TicketForm = () => {
   };
 
   return (
-    <div className="my-6 px-4">
+    <div className="my-6 text-sm sm:text-lg sm:px-6 lg:px-8">
       <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#041E23] max-w-[500px] mx-auto mb-10 shadow-lg">
         <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#08252B]">
           <h1 className="px-2 py-3 text-lg text-center font-semibold text-white">
@@ -159,7 +159,7 @@ const TicketForm = () => {
                   />
                 </div>
               </div>
-              <div className="flex flex-col justify-center text-white text-center sm:text-left">
+              <div className="flex flex-col justify-center text-white text-center sm:text-left mt-4 sm:mt-0">
                 <p className="text-lg">
                   <strong>{ticketData.fullName}</strong>
                 </p>
