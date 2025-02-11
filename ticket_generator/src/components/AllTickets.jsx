@@ -28,13 +28,15 @@ const AllTickets = () => {
     toast(
       (t) => (
         <div className="flex flex-col items-center p-4 rounded-lg shadow-lg">
-          <p className="text-white mb-4">Are you sure you want to delete this ticket?</p>
+          <p className="text-white mb-4">
+            Are you sure you want to delete this ticket?
+          </p>
           <div className="flex space-x-4">
             <button
               className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
               onClick={async () => {
                 await deleteTicket(id);
-                setTickets(tickets.filter(ticket => ticket.id !== id));
+                setTickets(tickets.filter((ticket) => ticket.id !== id));
                 toast.dismiss(t.id);
                 toast.success("Ticket deleted successfully!");
               }}
@@ -90,23 +92,27 @@ const AllTickets = () => {
                   alt="Avatar"
                   className="w-24 h-24 rounded-full border-2 border-[#0E464F] mb-4"
                 />
-                <h2 className="text-lg font-bold text-white">{ticket.fullName}</h2>
+                <h2 className="text-lg font-bold text-white">
+                  {ticket.fullName}
+                </h2>
                 <p className="text-sm text-[#B0C4C7]">{ticket.event}</p>
-
                 <button
                   className="mt-4 mx-3 text-sm py-2 px-6 rounded-lg border border-[#07373F] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
                   onClick={() => handleToggleDetails(ticket.id)}
                 >
-                  {expandedTicketId === ticket.id ? "Hide Details" : "View Details"}
+                  {expandedTicketId === ticket.id
+                    ? "Hide Details"
+                    : "View Details"}
                 </button>
 
                 <AnimatePresence>
                   {expandedTicketId === ticket.id && (
                     <motion.div
+                      id={`ticket-details-${ticket.id}`}
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="mt-4 p-4 bg-[#07373F] rounded-lg w-full"
+                      className="pdf-content mt-4 p-4 bg-[#07373F] rounded-lg w-full"
                     >
                       <div className="grid grid-cols-2 gap-4 text-sm text-white">
                         <div>
@@ -118,7 +124,9 @@ const AllTickets = () => {
                           <p>{ticket.date}</p>
                         </div>
                         <div>
-                          <p className="font-semibold text-[#24A0B5]">Location</p>
+                          <p className="font-semibold text-[#24A0B5]">
+                            Location
+                          </p>
                           <p>{ticket.location}</p>
                         </div>
                         <div>
@@ -127,7 +135,11 @@ const AllTickets = () => {
                         </div>
                       </div>
                       <div className="mt-4">
-                        <QRCodeCanvas value={`Ticket for ${ticket.fullName}`} size={100} className="mx-auto" />
+                        <QRCodeCanvas
+                          value={`Ticket for ${ticket.fullName}`}
+                          size={100}
+                          className="mx-auto"
+                        />
                       </div>
                       <button
                         className="mt-4 w-full text-sm py-2 px-6 rounded-lg border border-[#24A0B5] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
@@ -139,7 +151,6 @@ const AllTickets = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-
                 <button
                   className="mt-2 text-sm py-2 px-6 rounded-lg border border-red-500 bg-transparent text-red-500 hover:bg-red-500 hover:text-white duration-300 ease-in-out"
                   onClick={() => handleDelete(ticket.id)}
