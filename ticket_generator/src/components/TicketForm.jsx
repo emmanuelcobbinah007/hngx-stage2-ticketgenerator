@@ -78,122 +78,161 @@ const TicketForm = () => {
             Register For A Ticket
           </h1>
           <hr className="w-full mx-auto mt-4 bg-[#0E464F] h-px border-t-0 bg-gradient-to-r from-transparent via-[#0E464F] to-transparent opacity-25 dark:opacity-100" />
-          <form className="p-2 mt-3" onSubmit={(e) => handleSubmit(e)}>
-            <label className="text-md text-white" htmlFor="fullName">
-              Enter your full name
-            </label>
-            <input
-              className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
-              onChange={handleChange}
-              type="text"
-              name="fullName"
-              id="fullName"
-              value={fullName}
-            />
+          <form className="p-2 mt-3" onSubmit={(e) => handleSubmit(e)} aria-labelledby="ticket-form">
+            <fieldset>
+              <legend id="ticket-form" className="sr-only">
+                Ticket Registration Form
+              </legend>
 
-            <label className="text-md text-white" htmlFor="email">
-              Enter your email *
-            </label>
-            <input
-              className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
-              onChange={handleChange}
-              type="email"
-              name="email"
-              id="email"
-              placeholder="hello@hng.com"
-              value={email}
-            />
+              <label className="text-md text-white" htmlFor="fullName">
+                Enter your full name
+              </label>
+              <input
+                className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
+                onChange={handleChange}
+                type="text"
+                name="fullName"
+                id="fullName"
+                value={fullName}
+                required
+                aria-required="true"
+                aria-describedby="full-name-hint"
+              />
+              <div id="full-name-hint" className="sr-only">
+                Please provide your first and last name.
+              </div>
 
-            <label className="text-md text-white" htmlFor="avatar">
-              Enter the link to your avatar *
-            </label>
-            <input
-              className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
-              onChange={handleChange}
-              type="url"
-              name="avatar"
-              id="avatar"
-              placeholder="https://www.example.com/image"
-              value={avatar}
-            />
+              <label className="text-md text-white" htmlFor="email">
+                Enter your email *
+              </label>
+              <input
+                className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
+                onChange={handleChange}
+                type="email"
+                name="email"
+                id="email"
+                placeholder="hello@hng.com"
+                value={email}
+                required
+                aria-required="true"
+                aria-describedby="email-hint"
+              />
+              <div id="email-hint" className="sr-only">
+                Please enter a valid email address.
+              </div>
 
-            <label className="text-md text-white" htmlFor="event">
-              Enter the event name *
-            </label>
-            <input
-              className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
-              onChange={handleChange}
-              type="text"
-              name="event"
-              id="event"
-              placeholder="HNG Internship 12.0"
-              value={event}
-            />
+              <label className="text-md text-white" htmlFor="avatar">
+                Enter the link to your avatar *
+              </label>
+              <input
+                className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
+                onChange={handleChange}
+                type="url"
+                name="avatar"
+                id="avatar"
+                placeholder="https://www.example.com/image"
+                value={avatar}
+                required
+                aria-required="true"
+                aria-describedby="avatar-hint"
+              />
+              <div id="avatar-hint" className="sr-only">
+                Please provide a valid avatar URL.
+              </div>
 
-            <input
-              className="text-md font-bold mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white hover:cursor-pointer hover:scale-105 hover:bg-[#07373F] duration-300 ease-in-out"
-              type="submit"
-              value={loading ? "Submitting..." : "Generate Ticket"}
-              disabled={loading}
-            />
+              <label className="text-md text-white" htmlFor="event">
+                Enter the event name *
+              </label>
+              <input
+                className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
+                onChange={handleChange}
+                type="text"
+                name="event"
+                id="event"
+                placeholder="HNG Internship 12.0"
+                value={event}
+                required
+                aria-required="true"
+                aria-describedby="event-hint"
+              />
+              <div id="event-hint" className="sr-only">
+                Please provide a valid event name.
+              </div>
+
+              <input
+                className="text-md font-bold mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white hover:cursor-pointer hover:scale-105 hover:bg-[#07373F] duration-300 ease-in-out"
+                type="submit"
+                value={loading ? "Submitting..." : "Generate Ticket"}
+                disabled={loading}
+                aria-live="assertive"
+              />
+            </fieldset>
           </form>
         </div>
       </div>
 
       {ticketData && (
-        <div className="mx-auto w-full sm:w-[90%] lg:w-[70%] ticket-card mt-8 p-6 border border-[#0E464F] bg-[#041E23] rounded-2xl shadow-lg">
-          <div className="pdf-content p-6 rounded-lg border border-[#0E464F] bg-[#08252B]">
-            <h2 className="text-2xl font-bold mb-4 text-center text-white">
-              Your Ticket is Ready!
-            </h2>
-            <div className="flex flex-col sm:flex-row justify-between items-center">
-              <div className="flex justify-center mx-auto items-center mb-4 sm:mb-0">
-                <div className="flex flex-col justify-center">
-                  <QRCodeCanvas
-                    value={email || "Default QR Data"}
-                    size={200}
-                    level="H"
-                    includeMargin={true}
-                    ref={qrCodeRef}
-                    className="rounded-xl shadow-md"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col justify-center text-white text-center sm:text-left mt-4 sm:mt-0">
-                <p className="text-lg">
-                  <strong>{ticketData.fullName}</strong>
-                </p>
-                <p className="text-md">{ticketData.email}</p>
-                <div className="py-4">
-                  <p className="text-md">Event:</p>
-                  <p className="font-bold text-xl">{ticketData.event}</p>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center mt-4">
-              <img
-                src={ticketData.avatar}
-                alt="Avatar"
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-[#0E464F] transform transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg"
-              />
-            </div>
-          </div>
-          <div className="p-2 rounded-lg border border-[#0E464F] bg-[#08252B] flex flex-col sm:flex-row justify-center sm:justify-between mt-4">
-            <button
-              className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#24A0B5] text-[#24A0B5] hover:scale-105 duration-300 ease-in-out mb-2 sm:mb-0"
-              onClick={() => setTicketData(null)}
-            >
-              Book Another Ticket
-            </button>
-            <button
-              className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#07373F] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
-              onClick={() => handleDownloadPDF(ticketData)}
-            >
-              Download Ticket
-            </button>
+  <div
+    className="mx-auto w-full sm:w-[90%] lg:w-[70%] ticket-card mt-8 p-6 border border-[#0E464F] bg-[#041E23] rounded-2xl shadow-lg"
+    role="region"
+    aria-labelledby="ticket-details-heading"
+  >
+    <div className="pdf-content p-6 rounded-lg border border-[#0E464F] bg-[#08252B]">
+      <h2 id="ticket-details-heading" className="text-2xl font-bold mb-4 text-center text-white">
+        Your Ticket is Ready!
+      </h2>
+      <div className="flex flex-col sm:flex-row justify-between items-center">
+        <div className="flex justify-center mx-auto items-center mb-4 sm:mb-0">
+          <div className="flex flex-col justify-center">
+            <QRCodeCanvas
+              value={email || "Default QR Data"}
+              size={200}
+              level="H"
+              includeMargin={true}
+              ref={qrCodeRef}
+              className="rounded-xl shadow-md"
+              aria-label="QR Code for ticket"
+            />
           </div>
         </div>
-      )}
+        <div className="flex flex-col justify-center text-white text-center sm:text-left mt-4 sm:mt-0">
+          <p className="text-lg">
+            <strong>{ticketData.fullName}</strong>
+          </p>
+          <p className="text-md">{ticketData.email}</p>
+          <div className="py-4">
+            <p className="text-md">Event:</p>
+            <p className="font-bold text-xl">{ticketData.event}</p>
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-center mt-4">
+        <img
+          src={ticketData.avatar}
+          alt={`Avatar of ${ticketData.fullName}`}
+          className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-[#0E464F] transform transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg"
+        />
+      </div>
+    </div>
+    <div className="p-2 rounded-lg border border-[#0E464F] bg-[#08252B] flex flex-col sm:flex-row justify-center sm:justify-between mt-4">
+      <button
+        className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#24A0B5] text-[#24A0B5] hover:scale-105 duration-300 ease-in-out mb-2 sm:mb-0"
+        onClick={() => setTicketData(null)}
+        aria-label="Book another ticket"
+      >
+        Book Another Ticket
+      </button>
+      <button
+        className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#07373F] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
+        onClick={() => handleDownloadPDF(ticketData)}
+        aria-label="Download your ticket as a PDF"
+      >
+        Download Ticket
+      </button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
