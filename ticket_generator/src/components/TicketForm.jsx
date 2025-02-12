@@ -74,8 +74,8 @@ const TicketForm = () => {
     <div className="my-6 text-sm sm:text-lg sm:px-6 lg:px-8">
       <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#041E23] max-w-[500px] mx-auto mb-10 shadow-lg">
         <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#08252B]">
-          <h1 className="px-2 py-3 text-lg text-center font-semibold text-white">
-            Register For A Ticket
+          <h1 className="px-2 py-3 text-lg text-left font-semibold text-white">
+            Attendee Details
           </h1>
           <hr className="w-full mx-auto mt-4 bg-[#0E464F] h-px border-t-0 bg-gradient-to-r from-transparent via-[#0E464F] to-transparent opacity-25 dark:opacity-100" />
           <form className="p-2 mt-3" onSubmit={(e) => handleSubmit(e)} aria-labelledby="ticket-form">
