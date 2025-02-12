@@ -73,178 +73,200 @@ const TicketForm = () => {
 
   return (
     <div className="my-6 text-sm sm:text-lg sm:px-6 lg:px-8">
-      <div className="p-6 rounded-2xl border border-[#197686] bg-[#041E23] max-w-[500px] mx-auto mb-10 shadow-lg">
-      <div className="w-[95%] mx-auto">
+      <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#041E23] max-w-[702px] mx-auto mb-10 shadow-lg">
+        <div className="w-[95%] mx-auto">
           <div className="flex justify-between mb-2">
             <h2 className="text-2xl font-extralight font-[Jejumyeongjo]">
               Attendee Details
             </h2>
             <p className="text-sm text-gray-400">Step 2/3</p>
           </div>
-          <div className="h-1 mb-4 bg-gray-700 rounded-full" >
+          <div className="h-1 mb-4 bg-gray-700 rounded-full">
             <div className="h-1 w-[66%] bg-[#24A0B5] rounded-full"></div>
           </div>
-        <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#08252B]">
-          <form className="p-2" onSubmit={(e) => handleSubmit(e)} aria-labelledby="ticket-form">
-            <fieldset>
-              <legend id="ticket-form" className="sr-only">
-                Ticket Registration Form
-              </legend>
+          <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#08252B]">
+            <form
+              className="p-2"
+              onSubmit={(e) => handleSubmit(e)}
+              aria-labelledby="ticket-form"
+            >
+              <fieldset>
+                <legend id="ticket-form" className="sr-only">
+                  Ticket Registration Form
+                </legend>
 
-              <label className="text-md text-white" htmlFor="fullName">
-                Enter your full name
-              </label>
-              <input
-                className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
-                onChange={handleChange}
-                type="text"
-                name="fullName"
-                id="fullName"
-                value={fullName}
-                required
-                aria-required="true"
-                aria-describedby="full-name-hint"
-              />
-              <div id="full-name-hint" className="sr-only">
-                Please provide your first and last name.
-              </div>
+                <label className="text-sm text-white" htmlFor="fullName">
+                  Enter your name
+                </label>
+                <input
+                  className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] text-white"
+                  onChange={handleChange}
+                  type="text"
+                  name="fullName"
+                  id="fullName"
+                  value={fullName}
+                  required
+                  aria-required="true"
+                  aria-describedby="full-name-hint"
+                />
+                <div id="full-name-hint" className="sr-only">
+                  Please provide your first and last name.
+                </div>
 
-              <label className="text-md text-white" htmlFor="email">
-                Enter your email *
-              </label>
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-        <MdOutlineMail className="text-gray-500" /> {/* Your React Icon */}
-          </div>
-              <input
-                className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
-                onChange={handleChange}
-                type="email"
-                name="email"
-                id="email"
-                placeholder="hello@hng.com"
-                value={email}
-                required
-                aria-required="true"
-                aria-describedby="email-hint"
-              />
-              <div id="email-hint" className="sr-only">
-                Please enter a valid email address.
-              </div>
+                <label className="text-sm text-white" htmlFor="email">
+                  Enter your email *
+                </label>
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <MdOutlineMail className="text-gray-500" />{" "}
+                  {/* Your React Icon */}
+                </div>
+                <input
+                  className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] text-white"
+                  onChange={handleChange}
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="hello@hng.com"
+                  value={email}
+                  required
+                  aria-required="true"
+                  aria-describedby="email-hint"
+                />
+                <div id="email-hint" className="sr-only">
+                  Please enter a valid email address.
+                </div>
 
-              <label className="text-md text-white" htmlFor="avatar">
-                Enter the link to your avatar *
-              </label>
-              <input
-                className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
-                onChange={handleChange}
-                type="url"
-                name="avatar"
-                id="avatar"
-                placeholder="https://www.example.com/image"
-                value={avatar}
-                required
-                aria-required="true"
-                aria-describedby="avatar-hint"
-              />
-              <div id="avatar-hint" className="sr-only">
-                Please provide a valid avatar URL.
-              </div>
+                <label className="text-sm text-white" htmlFor="avatar">
+                  Enter the link to your avatar *
+                </label>
+                <input
+                  className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] text-white"
+                  onChange={handleChange}
+                  type="url"
+                  name="avatar"
+                  id="avatar"
+                  placeholder="https://www.example.com/image"
+                  value={avatar}
+                  required
+                  aria-required="true"
+                  aria-describedby="avatar-hint"
+                />
+                <div id="avatar-hint" className="sr-only">
+                  Please provide a valid avatar URL.
+                </div>
 
-              <label className="text-md text-white" htmlFor="event">
-                Enter the event name *
-              </label>
-              <input
-                className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
-                onChange={handleChange}
-                type="text"
-                name="event"
-                id="event"
-                placeholder="HNG Internship 12.0"
-                value={event}
-                required
-                aria-required="true"
-                aria-describedby="event-hint"
-              />
-              <div id="event-hint" className="sr-only">
-                Please provide a valid event name.
-              </div>
+                <label className="text-sm text-white" htmlFor="event">
+                  Special Request?
+                </label>
+                <textarea
+                  className="text-sm mt-2 mb-5 block w-full p-2 h-[127px] rounded-lg border border-[#07373F] text-white"
+                  onChange={handleChange}
+                  placeholder="Textarea"
+                  type="text"
+                  name="event"
+                  id="event"
+                  value={event}
+                  required
+                  aria-required="true"
+                  aria-describedby="event-hint"
+                />
+                <div id="event-hint" className="sr-only">
+                  Please provide a valid event name.
+                </div>
 
-              <input
-                className="text-md font-bold mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white hover:cursor-pointer hover:scale-105 hover:bg-[#07373F] duration-300 ease-in-out"
-                type="submit"
-                value={loading ? "Submitting..." : "Generate Ticket"}
-                disabled={loading}
-                aria-live="assertive"
-              />
-            </fieldset>
-          </form>
-        </div>
-      </div>
+                <div className="flex flex-col sm:flex-row justify-between mt-8 space-x-2">
+                  <button
+                    className="text-sm hidden w-full sm:w-1/2 my-1 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all"
+                    onClick={() => alert("Canceled")}
+                  >
+                    Cancel
+                  </button>
+                  <input
+                    type="submit"
+                    disabled={loading}
+                    aria-live="assertive"
+                    className="text-sm w-full my-1 sm:w-1/2 py-2 rounded-lg bg-[#24A0B5] hover:bg-teal-400 transition-all"
+                    value={loading ? "Submitting..." : "Generate Free Ticket"}
+                  />
 
-      {ticketData && (
-  <div
-    className="mx-auto w-full sm:w-[90%] lg:w-[70%] ticket-card mt-8 p-6 border border-[#0E464F] bg-[#041E23] rounded-2xl shadow-lg"
-    role="region"
-    aria-labelledby="ticket-details-heading"
-  >
-    <div className="pdf-content p-6 rounded-lg border border-[#0E464F] bg-[#08252B]">
-      <h2 id="ticket-details-heading" className="text-2xl font-bold mb-4 text-center text-white">
-        Your Ticket is Ready!
-      </h2>
-      <div className="flex flex-col sm:flex-row justify-between items-center">
-        <div className="flex justify-center mx-auto items-center mb-4 sm:mb-0">
-          <div className="flex flex-col justify-center">
-            <QRCodeCanvas
-              value={email || "Default QR Data"}
-              size={200}
-              level="H"
-              includeMargin={true}
-              ref={qrCodeRef}
-              className="rounded-xl shadow-md"
-              aria-label="QR Code for ticket"
-            />
+                  <button
+                    className="text-sm w-full sm:w-1/2 my-1 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all"
+                    onClick={() => alert("Canceled")}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </fieldset>
+            </form>
           </div>
         </div>
-        <div className="flex flex-col justify-center text-white text-center sm:text-left mt-4 sm:mt-0">
-          <p className="text-lg">
-            <strong>{ticketData.fullName}</strong>
-          </p>
-          <p className="text-md">{ticketData.email}</p>
-          <div className="py-4">
-            <p className="text-md">Event:</p>
-            <p className="font-bold text-xl">{ticketData.event}</p>
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-center mt-4">
-        <img
-          src={ticketData.avatar}
-          alt={`Avatar of ${ticketData.fullName}`}
-          className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-[#0E464F] transform transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg"
-        />
-      </div>
-    </div>
-    <div className="p-2 rounded-lg border border-[#0E464F] bg-[#08252B] flex flex-col sm:flex-row justify-center sm:justify-between mt-4">
-      <button
-        className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#24A0B5] text-[#24A0B5] hover:scale-105 duration-300 ease-in-out mb-2 sm:mb-0"
-        onClick={() => setTicketData(null)}
-        aria-label="Book another ticket"
-      >
-        Book Another Ticket
-      </button>
-      <button
-        className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#07373F] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
-        onClick={() => handleDownloadPDF(ticketData)}
-        aria-label="Download your ticket as a PDF"
-      >
-        Download Ticket
-      </button>
-    </div>
-  </div>
-)}
 
-    </div>
+        {ticketData && (
+          <div
+            className="mx-auto w-full sm:w-[90%] lg:w-[70%] ticket-card mt-8 p-6 border border-[#0E464F] bg-[#041E23] rounded-2xl shadow-lg"
+            role="region"
+            aria-labelledby="ticket-details-heading"
+          >
+            <div className="pdf-content p-6 rounded-lg border border-[#0E464F] bg-[#08252B]">
+              <h2
+                id="ticket-details-heading"
+                className="text-2xl font-bold mb-4 text-center text-white"
+              >
+                Your Ticket is Ready!
+              </h2>
+              <div className="flex flex-col sm:flex-row justify-between items-center">
+                <div className="flex justify-center mx-auto items-center mb-4 sm:mb-0">
+                  <div className="flex flex-col justify-center">
+                    <QRCodeCanvas
+                      value={email || "Default QR Data"}
+                      size={200}
+                      level="H"
+                      includeMargin={true}
+                      ref={qrCodeRef}
+                      className="rounded-xl shadow-md"
+                      aria-label="QR Code for ticket"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center text-white text-center sm:text-left mt-4 sm:mt-0">
+                  <p className="text-lg">
+                    <strong>{ticketData.fullName}</strong>
+                  </p>
+                  <p className="text-md">{ticketData.email}</p>
+                  <div className="py-4">
+                    <p className="text-md">Event:</p>
+                    <p className="font-bold text-xl">{ticketData.event}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-center mt-4">
+                <img
+                  src={ticketData.avatar}
+                  alt={`Avatar of ${ticketData.fullName}`}
+                  className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-[#0E464F] transform transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg"
+                />
+              </div>
+            </div>
+            <div className="p-2 rounded-lg border border-[#0E464F] bg-[#08252B] flex flex-col sm:flex-row justify-center sm:justify-between mt-4">
+              <button
+                className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#24A0B5] text-[#24A0B5] hover:scale-105 duration-300 ease-in-out mb-2 sm:mb-0"
+                onClick={() => setTicketData(null)}
+                aria-label="Book another ticket"
+              >
+                Book Another Ticket
+              </button>
+              <button
+                className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#07373F] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
+                onClick={() => handleDownloadPDF(ticketData)}
+                aria-label="Download your ticket as a PDF"
+              >
+                Download Ticket
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
-}
+};
 export default TicketForm;

@@ -12,7 +12,7 @@ const TicketSelection = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center text-white mt-6">
-      <div className="w-full max-w-md lg:max-w-lg p-6 bg-[#041E23] border border-[#197686] rounded-2xl shadow-lg">
+      <div className="w-full max-w-md lg:max-w-lg p-6 bg-[#041E23] border border-[#0E464F] rounded-2xl shadow-lg">
         {/* Header */}
         <div className="w-[95%] mx-auto">
           <div className="flex justify-between mb-2">
@@ -94,18 +94,24 @@ const TicketSelection = () => {
             </div>
 
             {/* Buttons */}
-            <div className="flex justify-between mt-8 space-x-2">
+            <div className="flex flex-col sm:flex-row justify-between mt-8 space-x-2">
               <button
-                className="w-1/2 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all"
+                className="hidden w-full sm:w-1/2 my-1 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all"
                 onClick={() => alert("Canceled")}
               >
                 Cancel
               </button>
               <button
-                className="w-1/2 py-3 rounded-lg bg-teal-500 hover:bg-teal-400 transition-all"
+                className="w-full my-1 sm:w-1/2 py-2 rounded-lg bg-[#24A0B5] hover:bg-teal-400 transition-all"
                 onClick={handleNext}
               >
                 Next
+              </button>
+              <button
+                className="w-full sm:w-1/2 my-1 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all"
+                onClick={() => alert("Canceled")}
+              >
+                Cancel
               </button>
             </div>
           </div>
