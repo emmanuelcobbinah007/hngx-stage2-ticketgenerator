@@ -4,6 +4,7 @@ import handleDownloadPDF from "../utils/handleDownloadPDF";
 import handleConfetti from "../utils/handleConfetti";
 import { QRCodeCanvas } from "qrcode.react";
 import { MdOutlineMail } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const TicketForm = () => {
   const [fullName, setFullName] = useState("");
@@ -14,6 +15,8 @@ const TicketForm = () => {
   const [ticketData, setTicketData] = useState(null);
 
   const qrCodeRef = useRef(null);
+
+  const navigate = useNavigate();
 
   // Function to convert QRCode to Base64
   const getQRCodeDataUrl = (ref) => {
@@ -64,16 +67,24 @@ const TicketForm = () => {
     setTicketData(ticket);
     setLoading(false);
     handleConfetti();
+    
+    navigate(`/ticket/${email}`);
 
     setFullName("");
     setEmail("");
     setAvatar("");
     setEvent("");
+
   };
+
+  const handleBack = (e) => {
+    e.preventDefault();
+    navigate("/");
+  }
 
   return (
     <div className="my-6 text-sm sm:text-lg sm:px-6 lg:px-8">
-      <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#041E23] max-w-[702px] mx-auto mb-10 shadow-lg">
+      <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#041E23] max-w-[525px] mx-auto mb-10 shadow-lg">
         <div className="w-[95%] mx-auto">
           <div className="flex justify-between mb-2">
             <h2 className="text-2xl font-extralight font-[Jejumyeongjo]">
@@ -176,95 +187,30 @@ const TicketForm = () => {
 
                 <div className="flex flex-col sm:flex-row justify-between mt-8 space-x-2">
                   <button
-                    className="text-sm hidden w-full sm:w-1/2 my-1 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all"
-                    onClick={() => alert("Canceled")}
+                    className="hover:cursor-pointer hidden sm:inline-block text-sm w-full sm:w-1/2 my-1 py-2 rounded-lg border border-[#24A0B5] transition-all"
+                    onClick={handleBack}
                   >
-                    Cancel
+                    Back
                   </button>
                   <input
                     type="submit"
                     disabled={loading}
                     aria-live="assertive"
-                    className="text-sm w-full my-1 sm:w-1/2 py-2 rounded-lg bg-[#24A0B5] hover:bg-teal-400 transition-all"
+                    className="hover:cursor-pointer text-sm w-full my-1 sm:w-1/2 py-2 rounded-lg bg-[#24A0B5] hover:bg-teal-400 transition-all"
                     value={loading ? "Submitting..." : "Generate Free Ticket"}
                   />
 
                   <button
-                    className="text-sm w-full sm:w-1/2 my-1 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all"
-                    onClick={() => alert("Canceled")}
+                    className="sm:hidden text-sm w-full sm:w-1/2 my-1 py-2 rounded-lg hover:cursor-pointer border border-[#24A0B5] transition-all"
+                    onClick={handleBack}
                   >
-                    Cancel
+                    Back
                   </button>
                 </div>
               </fieldset>
             </form>
           </div>
         </div>
-
-        {ticketData && (
-          <div
-            className="mx-auto w-full sm:w-[90%] lg:w-[70%] ticket-card mt-8 p-6 border border-[#0E464F] bg-[#041E23] rounded-2xl shadow-lg"
-            role="region"
-            aria-labelledby="ticket-details-heading"
-          >
-            <div className="pdf-content p-6 rounded-lg border border-[#0E464F] bg-[#08252B]">
-              <h2
-                id="ticket-details-heading"
-                className="text-2xl font-bold mb-4 text-center text-white"
-              >
-                Your Ticket is Ready!
-              </h2>
-              <div className="flex flex-col sm:flex-row justify-between items-center">
-                <div className="flex justify-center mx-auto items-center mb-4 sm:mb-0">
-                  <div className="flex flex-col justify-center">
-                    <QRCodeCanvas
-                      value={email || "Default QR Data"}
-                      size={200}
-                      level="H"
-                      includeMargin={true}
-                      ref={qrCodeRef}
-                      className="rounded-xl shadow-md"
-                      aria-label="QR Code for ticket"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-col justify-center text-white text-center sm:text-left mt-4 sm:mt-0">
-                  <p className="text-lg">
-                    <strong>{ticketData.fullName}</strong>
-                  </p>
-                  <p className="text-md">{ticketData.email}</p>
-                  <div className="py-4">
-                    <p className="text-md">Event:</p>
-                    <p className="font-bold text-xl">{ticketData.event}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-center mt-4">
-                <img
-                  src={ticketData.avatar}
-                  alt={`Avatar of ${ticketData.fullName}`}
-                  className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-[#0E464F] transform transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-lg"
-                />
-              </div>
-            </div>
-            <div className="p-2 rounded-lg border border-[#0E464F] bg-[#08252B] flex flex-col sm:flex-row justify-center sm:justify-between mt-4">
-              <button
-                className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#24A0B5] text-[#24A0B5] hover:scale-105 duration-300 ease-in-out mb-2 sm:mb-0"
-                onClick={() => setTicketData(null)}
-                aria-label="Book another ticket"
-              >
-                Book Another Ticket
-              </button>
-              <button
-                className="text-sm mx-2 py-2 px-6 rounded-lg border border-[#07373F] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
-                onClick={() => handleDownloadPDF(ticketData)}
-                aria-label="Download your ticket as a PDF"
-              >
-                Download Ticket
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

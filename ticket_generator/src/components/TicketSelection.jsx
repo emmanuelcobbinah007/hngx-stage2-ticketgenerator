@@ -7,6 +7,10 @@ const TicketSelection = () => {
   const navigate = useNavigate();
 
   const handleNext = () => {
+    if (ticketType === "Free") {
+      alert("Please select a ticket type");
+      return;
+    }
     navigate("/ticket-form");
   };
 
@@ -96,7 +100,7 @@ const TicketSelection = () => {
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row justify-between mt-8 space-x-2">
               <button
-                className="hidden w-full sm:w-1/2 my-1 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all"
+                className="hidden sm:inline-block w-full sm:w-1/2 my-1 py-2 rounded-lg border border-[#24A0B5] transition-all"
                 onClick={() => alert("Canceled")}
               >
                 Cancel
@@ -108,7 +112,7 @@ const TicketSelection = () => {
                 Next
               </button>
               <button
-                className="w-full sm:w-1/2 my-1 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all"
+                className="sm:hidden w-full sm:w-1/2 my-1 py-2 rounded-lg border-[#24A0B5] transition-all"
                 onClick={() => alert("Canceled")}
               >
                 Cancel
