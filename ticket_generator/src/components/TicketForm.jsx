@@ -184,12 +184,12 @@ const TicketForm = () => {
                     type="submit"
                     disabled={loading}
                     aria-live="assertive"
-                    className="hover:cursor-pointer text-sm w-full my-1 sm:w-1/2 py-2 rounded-lg bg-[#24A0B5] hover:bg-teal-400 transition-all"
+                    className="hover:cursor-pointer text-sm w-full my-1 sm:w-1/2 py-2 rounded-lg bg-[#24A0B5] hover:bg-teal-400 transition-all hover:cursor-pointer"
                     value={loading ? "Submitting..." : "Generate Free Ticket"}
                   />
 
                   <button
-                    className="sm:hidden text-sm w-full sm:w-1/2 my-1 py-2 rounded-lg hover:cursor-pointer border border-[#24A0B5] transition-all"
+                    className="sm:hidden text-sm w-full sm:w-1/2 my-1 py-2 rounded-lg hover:cursor-pointer border border-[#24A0B5] transition-all hover:cursor-pointer"
                     onClick={handleBack}
                   >
                     Back

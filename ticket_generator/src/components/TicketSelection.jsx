@@ -100,19 +100,19 @@ const TicketSelection = () => {
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row justify-between mt-8 space-x-2">
               <button
-                className="hidden sm:inline-block w-full sm:w-1/2 my-1 py-2 rounded-lg border border-[#24A0B5] transition-all"
+                className="hidden sm:inline-block w-full sm:w-1/2 my-1 py-2 rounded-lg border border-[#24A0B5] transition-all hover:cursor-pointer"
                 onClick={() => alert("Canceled")}
               >
                 Cancel
               </button>
               <button
-                className="w-full my-1 sm:w-1/2 py-2 rounded-lg bg-[#24A0B5] hover:bg-teal-400 transition-all"
+                className="w-full my-1 sm:w-1/2 py-2 rounded-lg bg-[#24A0B5] hover:bg-teal-400 transition-all hover:cursor-pointer"
                 onClick={handleNext}
               >
                 Next
               </button>
               <button
-                className="sm:hidden w-full sm:w-1/2 my-1 py-2 rounded-lg border-[#24A0B5] transition-all"
+                className="sm:hidden w-full sm:w-1/2 my-1 py-2 rounded-lg border-[#24A0B5] transition-all hover:cursor-pointer"
                 onClick={() => alert("Canceled")}
               >
                 Cancel
