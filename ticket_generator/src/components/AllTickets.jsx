@@ -5,11 +5,14 @@ import { IoCloudDownloadOutline } from "react-icons/io5";
 import { Toaster, toast } from "react-hot-toast";
 import { QRCodeCanvas } from "qrcode.react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const AllTickets = () => {
   const [tickets, setTickets] = useState([]);
   const [expandedTicketId, setExpandedTicketId] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -23,6 +26,10 @@ const AllTickets = () => {
   const handleToggleDetails = (id) => {
     setExpandedTicketId(expandedTicketId === id ? null : id);
   };
+
+  const handleDetails = (ticket) => {
+    navigate(`/ticket/${ticket.id}`)
+  }
 
   const handleDelete = async (id) => {
     toast(
@@ -98,12 +105,8 @@ const AllTickets = () => {
                 <p className="text-sm text-[#B0C4C7]">{ticket.event}</p>
                 <button
                   className="mt-4 mx-3 text-sm py-2 px-6 rounded-lg border border-[#07373F] bg-[#24A0B5] text-white hover:scale-105 duration-300 ease-in-out"
-                  onClick={() => handleToggleDetails(ticket.id)}
-                >
-                  {expandedTicketId === ticket.id
-                    ? "Hide Details"
-                    : "View Details"}
-                </button>
+                  onClick={() => handleDetails(ticket)}
+                >View Details</button>
 
                 <AnimatePresence>
                   {expandedTicketId === ticket.id && (

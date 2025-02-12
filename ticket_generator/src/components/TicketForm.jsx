@@ -1,46 +1,43 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { addTicket } from "../db/indexedDB";
 import handleDownloadPDF from "../utils/handleDownloadPDF";
 import handleConfetti from "../utils/handleConfetti";
-import { QRCodeCanvas } from "qrcode.react";
 import { MdOutlineMail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import {loadAllTickets} from "../db/indexedDB";
 
 const TicketForm = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState("");
-  const [event, setEvent] = useState("");
+  const [specialRequest, setSpecialRequest] = useState("");
   const [loading, setLoading] = useState(false);
+  const [arrayLength, setArrayLength] = useState();
   const [ticketData, setTicketData] = useState(null);
-
-  const qrCodeRef = useRef(null);
 
   const navigate = useNavigate();
 
-  // Function to convert QRCode to Base64
-  const getQRCodeDataUrl = (ref) => {
-    return new Promise((resolve, reject) => {
-      try {
-        const canvas = ref.current.querySelector("canvas");
-        const dataUrl = canvas.toDataURL("image/png");
-        resolve(dataUrl);
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
+  useEffect(() => {
+    const fetchTickets = async () => {
+    const allTickets = await loadAllTickets();
+    setArrayLength(allTickets.length);
+    };
+  
+    fetchTickets();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "fullName") setFullName(value);
     if (name === "email") setEmail(value);
     if (name === "avatar") setAvatar(value);
-    if (name === "event") setEvent(value);
+    if (name === "specialRequest") setSpecialRequest(value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(arrayLength)
 
     const nameParts = fullName.trim().split(" ");
     if (nameParts.length < 2) {
@@ -54,27 +51,23 @@ const TicketForm = () => {
       return;
     }
 
-    if (event.trim().length < 3) {
-      alert("Please enter a valid event name (at least 3 characters).");
-      return;
-    }
-
     setLoading(true);
+    
+    const id = arrayLength + 1;
 
-    const ticket = { fullName, email, avatar, event };
+    const ticket = { id, fullName, email, avatar, specialRequest };
 
     await addTicket(ticket);
     setTicketData(ticket);
     setLoading(false);
     handleConfetti();
-    
-    navigate(`/ticket/${email}`);
+
+    navigate(`/ticket/${id}`);
 
     setFullName("");
     setEmail("");
     setAvatar("");
-    setEvent("");
-
+    setSpecialRequest("");
   };
 
   const handleBack = (e) => {
@@ -166,7 +159,7 @@ const TicketForm = () => {
                   Please provide a valid avatar URL.
                 </div>
 
-                <label className="text-sm text-white" htmlFor="event">
+                <label className="text-sm text-white" htmlFor="specialRequest">
                   Special Request?
                 </label>
                 <textarea
@@ -174,16 +167,11 @@ const TicketForm = () => {
                   onChange={handleChange}
                   placeholder="Textarea"
                   type="text"
-                  name="event"
-                  id="event"
-                  value={event}
-                  required
-                  aria-required="true"
-                  aria-describedby="event-hint"
+                  name="specialRequest"
+                  id="specialRequest"
+                  value={specialRequest}
+                  aria-required="false"
                 />
-                <div id="event-hint" className="sr-only">
-                  Please provide a valid event name.
-                </div>
 
                 <div className="flex flex-col sm:flex-row justify-between mt-8 space-x-2">
                   <button

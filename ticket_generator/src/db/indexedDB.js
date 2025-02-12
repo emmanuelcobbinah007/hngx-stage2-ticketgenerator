@@ -4,6 +4,17 @@ const getTicketsFromLocalStorage = () => {
   return tickets ? JSON.parse(tickets) : [];
 };
 
+export const getTicketById = (id) => {
+  try {
+    const tickets = getTicketsFromLocalStorage();
+    const ticket = tickets.find(ticket => ticket.id === id);
+    return tickets || null; // Return null if ticket is not found
+  } catch (error) {
+    console.error(`Failed to get ticket with id ${id}:`, error);
+    return null;
+  }
+};
+
 // Function to save tickets to localStorage
 const saveTicketsToLocalStorage = (tickets) => {
   localStorage.setItem('tickets', JSON.stringify(tickets));
