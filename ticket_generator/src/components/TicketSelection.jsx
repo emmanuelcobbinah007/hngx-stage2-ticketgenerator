@@ -21,7 +21,9 @@ const TicketSelection = () => {
             </h2>
             <p className="text-sm text-gray-400">Step 1/3</p>
           </div>
-          <div className="h-1 bg-teal-400 rounded-full" />
+          <div className="h-1 mb-4 bg-gray-700 rounded-full" >
+            <div className="h-1 w-[33%] bg-[#24A0B5] rounded-full"></div>
+          </div>
 
           {/* Event Info */}
           <div className="my-3 p-3 rounded-2xl border border-[#0E464F] bg-[#08252B]">
@@ -57,7 +59,7 @@ const TicketSelection = () => {
                   (type, index) => (
                     <button
                       key={index}
-                      className={`w-full lg:flex-1 p-4 rounded-lg border ${
+                      className={`hover:bg-[#12464E] w-full lg:flex-1 p-4 rounded-lg border ${
                         ticketType === type
                           ? "border-[#197686] bg-[#12464E]"
                           : "border-[#197686]"

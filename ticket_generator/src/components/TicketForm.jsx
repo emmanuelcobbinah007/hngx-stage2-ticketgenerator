@@ -3,6 +3,7 @@ import { addTicket } from "../db/indexedDB";
 import handleDownloadPDF from "../utils/handleDownloadPDF";
 import handleConfetti from "../utils/handleConfetti";
 import { QRCodeCanvas } from "qrcode.react";
+import { MdOutlineMail } from "react-icons/md";
 
 const TicketForm = () => {
   const [fullName, setFullName] = useState("");
@@ -72,13 +73,19 @@ const TicketForm = () => {
 
   return (
     <div className="my-6 text-sm sm:text-lg sm:px-6 lg:px-8">
-      <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#041E23] max-w-[500px] mx-auto mb-10 shadow-lg">
+      <div className="p-6 rounded-2xl border border-[#197686] bg-[#041E23] max-w-[500px] mx-auto mb-10 shadow-lg">
+      <div className="w-[95%] mx-auto">
+          <div className="flex justify-between mb-2">
+            <h2 className="text-2xl font-extralight font-[Jejumyeongjo]">
+              Attendee Details
+            </h2>
+            <p className="text-sm text-gray-400">Step 2/3</p>
+          </div>
+          <div className="h-1 mb-4 bg-gray-700 rounded-full" >
+            <div className="h-1 w-[66%] bg-[#24A0B5] rounded-full"></div>
+          </div>
         <div className="p-6 rounded-2xl border border-[#0E464F] bg-[#08252B]">
-          <h1 className="px-2 py-3 text-lg text-left font-semibold text-white">
-            Attendee Details
-          </h1>
-          <hr className="w-full mx-auto mt-4 bg-[#0E464F] h-px border-t-0 bg-gradient-to-r from-transparent via-[#0E464F] to-transparent opacity-25 dark:opacity-100" />
-          <form className="p-2 mt-3" onSubmit={(e) => handleSubmit(e)} aria-labelledby="ticket-form">
+          <form className="p-2" onSubmit={(e) => handleSubmit(e)} aria-labelledby="ticket-form">
             <fieldset>
               <legend id="ticket-form" className="sr-only">
                 Ticket Registration Form
@@ -105,6 +112,9 @@ const TicketForm = () => {
               <label className="text-md text-white" htmlFor="email">
                 Enter your email *
               </label>
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <MdOutlineMail className="text-gray-500" /> {/* Your React Icon */}
+          </div>
               <input
                 className="text-sm mt-2 mb-5 block w-full p-2 rounded-lg border border-[#07373F] bg-[#0E464F] text-white"
                 onChange={handleChange}
@@ -234,7 +244,7 @@ const TicketForm = () => {
 )}
 
     </div>
+    </div>
   );
-};
-
+}
 export default TicketForm;
